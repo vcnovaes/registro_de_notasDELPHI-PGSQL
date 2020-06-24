@@ -1,0 +1,293 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'CRUD '
+  ClientHeight = 478
+  ClientWidth = 733
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label_status: TLabel
+    Left = 32
+    Top = 16
+    Width = 159
+    Height = 19
+    Caption = 'Status da Conex'#227'o:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Status: TLabel
+    Left = 216
+    Top = 19
+    Width = 96
+    Height = 16
+    Caption = 'N'#227'o conectado'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clPurple
+    Font.Height = -19
+    Font.Name = 'System'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 24
+    Top = 181
+    Width = 52
+    Height = 16
+    Caption = 'NOTA 1:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'System'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 24
+    Top = 221
+    Width = 52
+    Height = 16
+    Caption = 'NOTA 2:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'System'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 24
+    Top = 265
+    Width = 52
+    Height = 16
+    Caption = 'NOTA 3:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'System'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 24
+    Top = 97
+    Width = 42
+    Height = 16
+    Caption = 'Nome:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'System'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 24
+    Top = 137
+    Width = 30
+    Height = 16
+    Caption = 'CPF:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'System'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label7: TLabel
+    Left = 304
+    Top = 97
+    Width = 145
+    Height = 22
+    Caption = 'Consulte pelo nome:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'System'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 24
+    Top = 389
+    Width = 101
+    Height = 16
+    Caption = 'Deletar registro'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'System'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label8: TLabel
+    Left = 24
+    Top = 411
+    Width = 30
+    Height = 16
+    Caption = 'CPF:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'System'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object msg_excl: TLabel
+    Left = 32
+    Top = 433
+    Width = 160
+    Height = 12
+    Caption = 'Excluido com sucesso'
+    Font.Charset = OEM_CHARSET
+    Font.Color = clGreen
+    Font.Height = -12
+    Font.Name = 'Terminal'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
+    OnClick = msg_exclClick
+  end
+  object N1: TEdit
+    Left = 88
+    Top = 176
+    Width = 41
+    Height = 21
+    TabOrder = 0
+  end
+  object N2: TEdit
+    Left = 88
+    Top = 216
+    Width = 41
+    Height = 21
+    TabOrder = 1
+  end
+  object N3: TEdit
+    Left = 88
+    Top = 260
+    Width = 41
+    Height = 21
+    TabOrder = 2
+  end
+  object Button1: TButton
+    Left = 376
+    Top = 16
+    Width = 105
+    Height = 25
+    Caption = 'Conectar'
+    TabOrder = 3
+    OnClick = Button1Click
+  end
+  object Grid_notas: TDBGrid
+    Left = 304
+    Top = 152
+    Width = 409
+    Height = 289
+    Ctl3D = True
+    DataSource = DataSource1
+    DragMode = dmAutomatic
+    ParentCtl3D = False
+    TabOrder = 4
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Visible = False
+  end
+  object btn_inserir: TButton
+    Left = 174
+    Top = 192
+    Width = 75
+    Height = 89
+    Caption = 'Inserir'
+    TabOrder = 5
+    OnClick = btn_inserirClick
+  end
+  object T_name: TEdit
+    Left = 88
+    Top = 96
+    Width = 161
+    Height = 21
+    TabOrder = 6
+  end
+  object T_cpf: TEdit
+    Left = 88
+    Top = 136
+    Width = 161
+    Height = 21
+    TabOrder = 7
+  end
+  object Edit1: TEdit
+    Left = 455
+    Top = 96
+    Width = 161
+    Height = 21
+    TabOrder = 8
+  end
+  object btn_search: TButton
+    Left = 638
+    Top = 94
+    Width = 75
+    Height = 25
+    Caption = 'Buscar'
+    TabOrder = 9
+    OnClick = btn_searchClick
+  end
+  object btn_visualizar: TButton
+    Left = 32
+    Top = 312
+    Width = 217
+    Height = 49
+    Caption = 'Visualizar todos os registros'
+    TabOrder = 10
+    OnClick = btn_visualizarClick
+  end
+  object To_delete: TEdit
+    Left = 60
+    Top = 411
+    Width = 109
+    Height = 16
+    TabOrder = 11
+  end
+  object btn_delete: TButton
+    Left = 175
+    Top = 408
+    Width = 74
+    Height = 19
+    Caption = 'Excluir'
+    TabOrder = 12
+    OnClick = btn_searchClick
+  end
+  object DataSource1: TDataSource
+    DataSet = FDQuery1
+    Left = 512
+    Top = 280
+  end
+  object FDQuery1: TFDQuery
+    Connection = FDConnection1
+    Left = 376
+    Top = 272
+  end
+  object FDPhysPgDriverLink1: TFDPhysPgDriverLink
+    Left = 384
+    Top = 176
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'DriverID=PG')
+    LoginPrompt = False
+    Left = 512
+    Top = 176
+  end
+end

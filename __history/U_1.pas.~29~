@@ -1,0 +1,129 @@
+unit U_1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.Phys.PGDef, FireDAC.UI.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool,
+  FireDAC.Phys, FireDAC.VCLUI.Wait, FireDAC.Comp.Client, FireDAC.Phys.PG,
+  FireDAC.Comp.DataSet, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Label_status: TLabel;
+    Status: TLabel;
+    N1: TEdit;
+    N2: TEdit;
+    N3: TEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Button1: TButton;
+    Grid_notas: TDBGrid;
+    btn_inserir: TButton;
+    T_name: TEdit;
+    T_cpf: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Edit1: TEdit;
+    Label7: TLabel;
+    btn_search: TButton;
+    DataSource1: TDataSource;
+    FDQuery1: TFDQuery;
+    FDPhysPgDriverLink1: TFDPhysPgDriverLink;
+    FDConnection1: TFDConnection;
+    btn_visualizar: TButton;
+    Label6: TLabel;
+    To_delete: TEdit;
+    Label8: TLabel;
+    btn_delete: TButton;
+    msg_excl: TLabel;
+    procedure Button1Click(Sender: TObject);
+    procedure btn_visualizarClick(Sender: TObject);
+    procedure btn_inserirClick(Sender: TObject);
+    procedure btn_searchClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btn_inserirClick(Sender: TObject);
+var data: string;
+begin
+if FDConnection1.Connected then
+
+    WITH FDQuery1 do
+    begin
+      //data :=  T_name.Text+','+T_cpf +','+ N1.Text +','+ N2.Text+','+N3.Text;
+      close;
+      sql.Clear;
+      //sql.Add('insert into clientes (Nome, CPF, nota_1, nota_2, nota_3) ');
+      sql.Add('insert into principal (nome,cpf,nota_1,nota_2,nota_3) ');
+      //sql.Add('values('''+T_name.Text+','+T_cpf +','+ N1.Text +','+ N2.Text+','+N3.Text+''')');
+      //sql.Add('values('''+T_name.Text+','+T_cpf.Text+','+N1.Text+','+N2.Text+','+
+      // N3.Text +');');
+      sql.Add('values('+T_name.Text+','+T_cpf.Text+','+N1.Text+','+N2.Text+','+
+      N3.Text + ');' );
+      ExecSQL;
+      T_name.Text:='';
+      T_cpf.Text:='';
+      N1.Text:='';
+      N2.Text:='';
+      N3.Text:='';
+
+    end;
+end;
+
+procedure TForm1.btn_searchClick(Sender: TObject);
+begin
+  WITH FDQuery1 do
+     begin
+       close;
+       sql.Clear;
+       sql.Add('delete from principal where cpf = ('''+To_delete.Text+''')');
+       //sql.Add(');
+       ExecSql;
+       To_delete.Text := '';
+       msg_excl.Visible := true;
+     end;
+
+end;
+
+procedure TForm1.btn_visualizarClick(Sender: TObject);
+begin
+    grid_notas.Visible := True;
+    FDQuery1.Open('select * from principal;');
+    if msg_excl.Visible then
+       msg_excl.Visible := false;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  FDPhysPgDriverLink1.VendorHome := ExtractFilePath(Application.ExeName)+ 'pgbin32\';
+  FDPhysPgDriverLink1.VendorLib :=  'libpq.dll' ;
+  FDPhysPgDriverLink1.Release;
+
+   FDConnection1.Connected := false;
+   FDConnection1.Params.Values['database'] := 'sistemaNotas';
+   FDConnection1.Params.Values['user_name'] := 'postgres';
+   FDConnection1.Params.Values['password'] := '54321';
+   FDConnection1.Params.Values['server'] := 'localhost';
+   FDConnection1.Params.Values['port'] := '5432';
+   FDConnection1.Connected := true;
+   if FDConnection1.Connected then
+      Status.Caption := 'Conectado';
+
+end;
+
+end.
